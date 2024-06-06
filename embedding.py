@@ -10,6 +10,7 @@ __status__ = "Prototype"
 import os
 import pandas as pd
 from openai import OpenAI
+from sentence_transformers import SentenceTransformer
 
 
 class OpenAi:
@@ -56,6 +57,22 @@ class OctoAi:
          return None
 
 
+class MiniLm:
+   """ https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2 """
+
+   def __init__(self):
+      self.model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+
+   def get_embedding(self, text):
+      text = text.replace("\n", " ")
+      
+      try:
+         return self.model.encode(text).tolist()
+      except:
+         print(len(text))
+         return None
+      
+
 def data_processing(obj, dataset):
 
    # split dataset into 1k rows for embeddings
@@ -85,6 +102,8 @@ def data_processing(obj, dataset):
          prompts.to_csv('embeddings/openai/'+str(start)+'-'+str(finish-1)+'.csv', index=False)
       if isinstance(obj,OctoAi):
          prompts.to_csv('embeddings/octoai/'+str(start)+'-'+str(finish-1)+'.csv', index=False)
+      if isinstance(obj,MiniLm):
+         prompts.to_csv('embeddings/minilm/'+str(start)+'-'+str(finish-1)+'.csv', index=False)
       
       print(str(finish - 1) + ' done out of ' + str(max_count))
       start = finish
@@ -94,10 +113,13 @@ def data_processing(obj, dataset):
 if __name__ == '__main__':
    dataset = pd.read_pickle("dataset/hf_dataset.pkl")
    
-   octoai = OctoAi("")
+   octoai = OctoAi("<your_api_key>")
    data_processing(octoai, dataset)
 
-   openai = OpenAi("")
+   openai = OpenAi("<your_api_key>")
    data_processing(openai, dataset)
+
+   minilm = MiniLm()
+   data_processing(minilm, dataset)
 
    del dataset
