@@ -7,7 +7,6 @@ __email__ = "md.ahsanayub@outlook.com"
 __status__ = "Prototype"
 
 
-import os
 import pandas as pd
 from openai import OpenAI
 from sentence_transformers import SentenceTransformer
