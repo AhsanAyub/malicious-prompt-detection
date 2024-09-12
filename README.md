@@ -7,7 +7,7 @@ The research project has been published at the Conference on Applied Machine Lea
 If you use our implementation for scientific research, you are highly encouraged to cite our paper.
 
 ```
-@article{ayub2024ebedding,
+@article{ayub2024embedding,
   title={Embedding-based classifiers can detect prompt injection attacks},
   author={Ayub, Md Ahsan and Majumdar, Subhabrata},
   booktitle={CAMLIS},
