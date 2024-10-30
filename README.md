@@ -20,7 +20,7 @@ We develop a data pipeline using Python 3.11 to generate the embeddings for all 
 
 
 #### Citing this work
-If you use our implementation for scientific research, you are highly encouraged to cite our paper.
+If you use our implementation for scientific research, you are highly encouraged to cite [our paper](https://arxiv.org/abs/2410.22284).
 
 ```
 @article{ayub2024embedding,
